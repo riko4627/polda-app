@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "c1f72a4e-89a1-4389-9892-d9f2a71bf081",
+		"name": "SPK Penempatan Personel POLDA - API v1",
+		"description": "Koleksi API Sistem Pendukung Keputusan Penempatan Personel Kepolisian (Fase 1 - Repositories Pattern & UUID)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "sample_position_id",
+			"value": "01a17f0e-8302-70a8-8ae3-c96c03be597e",
+			"type": "string"
+		},
+		{
+			"key": "sample_personnel_id",
+			"value": "01a17f0e-83b5-72ec-9552-6325da3beebc",
+			"type": "string"
+		},
+		{
+			"key": "sample_rank_id",
+			"value": "01a17f0e-82a6-7138-8229-f237355afc42",
+			"type": "string"
+		},
+		{
+			"key": "criterion_c1_id",
+			"value": "01a17f0e-82e9-737a-800d-6282ccdd9628",
+			"type": "string"
+		},
+		{
+			"key": "criterion_c2_id",
+			"value": "01a17f0e-82ec-70b4-881a-0f317451e140",
+			"type": "string"
+		},
+		{
+			"key": "criterion_c3_id",
+			"value": "01a17f0e-82ef-7280-99e8-85c8bfc693cb",
+			"type": "string"
+		},
+		{
+			"key": "criterion_c4_id",
+			"value": "01a17f0e-82f2-72b3-b9d4-7b37da327668",
+			"type": "string"
+		},
+		{
+			"key": "criterion_c5_id",
+			"value": "01a17f0e-82f5-73d2-8ed1-8c909708f09b",
+			"type": "string"
+		},
+		{
+			"key": "criterion_c6_id",
+			"value": "01a17f0e-82f8-70b1-9dc4-73dcd54725df",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Jabatan (Positions)",
+			"item": [
+				{
+					"name": "Get All Active Positions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/positions",
+							"host": ["{{base_url}}"],
+							"path": ["positions"]
+						}
+					}
+				},
+				{
+					"name": "Get Position Detail with Rules & Criteria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/positions/{{sample_position_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["positions", "{{sample_position_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Position",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"KASAT_LANTAS\",\n    \"title\": \"Kepala Satuan Lalu Lintas (Kasat Lantas)\",\n    \"unit_name\": \"Satlantas Polresta\",\n    \"quota\": 1,\n    \"description\": \"Pimpinan operasional fungsi lalu lintas kewilayahan.\",\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/positions",
+							"host": ["{{base_url}}"],
+							"path": ["positions"]
+						}
+					}
+				},
+				{
+					"name": "Update Position",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Kepala Kepolisian Sektor Urban (Kapolsek Urban)\",\n    \"quota\": 4,\n    \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/positions/{{sample_position_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["positions", "{{sample_position_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Update Position Criteria Weights (Must Sum = 1.0)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"weights\": [\n        {\"criterion_id\": \"{{criterion_c1_id}}\", \"weight\": 0.25},\n        {\"criterion_id\": \"{{criterion_c2_id}}\", \"weight\": 0.20},\n        {\"criterion_id\": \"{{criterion_c3_id}}\", \"weight\": 0.15},\n        {\"criterion_id\": \"{{criterion_c4_id}}\", \"weight\": 0.15},\n        {\"criterion_id\": \"{{criterion_c5_id}}\", \"weight\": 0.15},\n        {\"criterion_id\": \"{{criterion_c6_id}}\", \"weight\": 0.10}\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/positions/{{sample_position_id}}/weights",
+							"host": ["{{base_url}}"],
+							"path": ["positions", "{{sample_position_id}}", "weights"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Personel (Personnel)",
+			"item": [
+				{
+					"name": "Get All Personnel (Paginated)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/personnel?per_page=10",
+							"host": ["{{base_url}}"],
+							"path": ["personnel"],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Personnel Full Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/personnel/{{sample_personnel_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["personnel", "{{sample_personnel_id}}"]
+						}
+					}
+				},
+				{
+					"name": "Create Personnel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nrp\": \"89012345\",\n    \"name\": \"Satria Wicaksana, S.I.K.\",\n    \"rank_id\": \"{{sample_rank_id}}\",\n    \"education_level\": \"S1\",\n    \"education_major\": \"Ilmu Kepolisian\",\n    \"has_sespimmen\": false,\n    \"current_position\": \"Kanit Turjawali\",\n    \"unit_name\": \"Ditlantas Polda\",\n    \"function_track\": \"Lantas\",\n    \"phone\": \"081234567811\",\n    \"email\": \"satria.wicaksana@polri.go.id\",\n    \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/personnel",
+							"host": ["{{base_url}}"],
+							"path": ["personnel"]
+						}
+					}
+				},
+				{
+					"name": "Update Personnel",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_position\": \"Wadir Reskrim Sementara\",\n    \"phone\": \"081999888777\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/personnel/{{sample_personnel_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["personnel", "{{sample_personnel_id}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Kriteria (Criteria)",
+			"item": [
+				{
+					"name": "Get All Criteria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/criteria",
+							"host": ["{{base_url}}"],
+							"path": ["criteria"]
+						}
+					}
+				},
+				{
+					"name": "Get Criterion Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/criteria/{{criterion_c1_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["criteria", "{{criterion_c1_id}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Penilaian Kinerja (Assessment Scores)",
+			"item": [
+				{
+					"name": "Record Assessment Score",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"personnel_id\": \"{{sample_personnel_id}}\",\n    \"criterion_id\": \"{{criterion_c1_id}}\",\n    \"score\": 94.50,\n    \"period_year\": 2026,\n    \"notes\": \"Evaluasi berkala semester 1\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/assessment-scores",
+							"host": ["{{base_url}}"],
+							"path": ["assessment-scores"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

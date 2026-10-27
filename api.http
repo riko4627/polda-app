@@ -1,0 +1,74 @@
+### Variabel Global
+@baseUrl = http://127.0.0.1:8000/api/v1
+@positionId = 01a17f0e-8302-70a8-8ae3-c96c03be597e
+@personnelId = 01a17f0e-83b5-72ec-9552-6325da3beebc
+@rankId = 01a17f0e-82a6-7138-8229-f237355afc42
+@c1Id = 01a17f0e-82e9-737a-800d-6282ccdd9628
+@c2Id = 01a17f0e-82ec-70b4-881a-0f317451e140
+@c3Id = 01a17f0e-82ef-7280-99e8-85c8bfc693cb
+@c4Id = 01a17f0e-82f2-72b3-b9d4-7b37da327668
+@c5Id = 01a17f0e-82f5-73d2-8ed1-8c909708f09b
+@c6Id = 01a17f0e-82f8-70b1-9dc4-73dcd54725df
+
+### 1. Ambil Semua Jabatan Aktif
+GET {{baseUrl}}/positions
+Accept: application/json
+
+### 2. Ambil Detail Jabatan (Termasuk Rules & Kriteria)
+GET {{baseUrl}}/positions/{{positionId}}
+Accept: application/json
+
+### 3. Buat Jabatan Baru
+POST {{baseUrl}}/positions
+Content-Type: application/json
+Accept: application/json
+
+{
+    "code": "KASAT_LANTAS",
+    "title": "Kepala Satuan Lalu Lintas (Kasat Lantas)",
+    "unit_name": "Satlantas Polresta",
+    "quota": 1,
+    "description": "Pimpinan fungsi lantas tingkat resort.",
+    "is_active": true
+}
+
+### 4. Update Bobot Kriteria Jabatan (Total Wajib 100% / 1.0)
+POST {{baseUrl}}/positions/{{positionId}}/weights
+Content-Type: application/json
+Accept: application/json
+
+{
+    "weights": [
+        {"criterion_id": "{{c1Id}}", "weight": 0.25},
+        {"criterion_id": "{{c2Id}}", "weight": 0.20},
+        {"criterion_id": "{{c3Id}}", "weight": 0.15},
+        {"criterion_id": "{{c4Id}}", "weight": 0.15},
+        {"criterion_id": "{{c5Id}}", "weight": 0.15},
+        {"criterion_id": "{{c6Id}}", "weight": 0.10}
+    ]
+}
+
+### 5. Ambil Daftar Personel (Paginasi)
+GET {{baseUrl}}/personnel?per_page=10
+Accept: application/json
+
+### 6. Ambil Profil Lengkap Personel (Pangkat, Riwayat, Dikjur, Nilai)
+GET {{baseUrl}}/personnel/{{personnelId}}
+Accept: application/json
+
+### 7. Ambil Seluruh Kriteria Penilaian
+GET {{baseUrl}}/criteria
+Accept: application/json
+
+### 8. Input / Perbarui Nilai Asesmen Personel
+POST {{baseUrl}}/assessment-scores
+Content-Type: application/json
+Accept: application/json
+
+{
+    "personnel_id": "{{personnelId}}",
+    "criterion_id": "{{c1Id}}",
+    "score": 95.00,
+    "period_year": 2026,
+    "notes": "Penilaian berkala semester 1"
+}
