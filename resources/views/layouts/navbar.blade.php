@@ -41,15 +41,32 @@
             <span class="font-semibold text-emerald-400">TOPSIS Ready</span>
         </div>
 
-        <!-- User Profile Card -->
+        <!-- User Profile Card & Logout -->
         <div class="flex items-center gap-3 border-l border-slate-800 pl-3 sm:pl-4">
             <div class="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 font-bold text-slate-950 shadow-md">
-                P
+                {{ substr(Auth::user()?->name ?? 'S', 0, 1) }}
             </div>
             <div class="hidden text-left sm:block">
-                <p class="text-xs font-semibold text-white">Administrator SDM</p>
-                <p class="text-[11px] text-slate-400">Bagbinkar Biro SDM</p>
+                <p class="text-xs font-semibold text-white">{{ Auth::user()?->name ?? 'Super Administrator SDM' }}</p>
+                <div class="flex items-center gap-1.5">
+                    <span class="inline-block h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                    <span class="text-[11px] font-semibold text-amber-400">Super Admin</span>
+                </div>
             </div>
+
+            <!-- Logout Button -->
+            <form method="POST" action="{{ route('logout') }}" class="inline ml-1">
+                @csrf
+                <button 
+                    type="submit" 
+                    title="Keluar (Logout)"
+                    class="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-rose-400 transition"
+                >
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                </button>
+            </form>
         </div>
     </div>
 </header>
