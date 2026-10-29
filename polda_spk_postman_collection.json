@@ -335,6 +335,76 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "5. Rekomendasi SPK-TOPSIS",
+			"item": [
+				{
+					"name": "Run Recommendation Engine (Screening + TOPSIS)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"position_id\": \"{{sample_position_id}}\",\n    \"period_year\": 2026,\n    \"notes\": \"Sidang Wanjak Penempatan Personel\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/recommendations/run",
+							"host": ["{{base_url}}"],
+							"path": ["recommendations", "run"]
+						}
+					}
+				},
+				{
+					"name": "Get Recommendation History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/recommendations/history?limit=10",
+							"host": ["{{base_url}}"],
+							"path": ["recommendations", "history"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Recommendation Detail & Matrices (3 Tabs)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/recommendations/{{sample_position_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["recommendations", "{{sample_position_id}}"]
+						}
+					}
+				}
+			]
 		}
 	]
 }
