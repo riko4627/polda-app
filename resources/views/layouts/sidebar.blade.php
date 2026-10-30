@@ -129,7 +129,7 @@
     </div>
 
     <!-- Sidebar Footer Info -->
-    <div class="shrink-0 border-t border-slate-800 p-4">
+    <div class="shrink-0 border-t border-slate-800 p-4 space-y-3">
         <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-3">
             <div class="flex items-center gap-2 text-xs font-semibold text-white">
                 <span class="inline-block h-2 w-2 rounded-full bg-amber-400"></span>
@@ -139,5 +139,18 @@
                 Penyaringan syarat mutlak + Perangkingan TOPSIS dinamis per jabatan.
             </p>
         </div>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button 
+                type="submit" 
+                class="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-xs font-semibold text-slate-400 transition hover:bg-rose-500/10 hover:border-rose-500/30 hover:text-rose-300"
+            >
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Keluar (Logout)</span>
+            </button>
+        </form>
     </div>
 </aside>

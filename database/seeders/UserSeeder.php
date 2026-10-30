@@ -22,22 +22,6 @@ class UserSeeder extends Seeder
                 'phone' => '081100000001',
                 'is_active' => true,
             ],
-            [
-                'name' => 'Operator Bagbinkar SDM',
-                'email' => 'adminsdm@polda.polri.go.id',
-                'password' => Hash::make('password'),
-                'role' => 'admin_sdm',
-                'phone' => '081100000002',
-                'is_active' => true,
-            ],
-            [
-                'name' => 'Kapolda / Tim Wanjak',
-                'email' => 'kapolda@polda.polri.go.id',
-                'password' => Hash::make('password'),
-                'role' => 'pimpinan',
-                'phone' => '081100000003',
-                'is_active' => true,
-            ],
         ];
 
         foreach ($users as $userData) {

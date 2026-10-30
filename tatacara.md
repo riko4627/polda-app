@@ -45,14 +45,21 @@ Buka peramban web (*Google Chrome* atau *Microsoft Edge*) pada komputer Anda, ke
 > npm run dev
 > ```
 
-### B. Akun Bawaan (Default Credentials)
-Aplikasi telah dilengkapi akun sesuai tingkatan wewenang pengguna:
+### B. Akun Login Super Admin
+Sesuai konfigurasi keamanan saat ini, **akses login diproteksi khusus untuk akun Super Administrator SDM**:
 
-| Peran (Role) | Nama Pengguna | Alamat Email | Kata Sandi Bawaan | Wewenang Utama |
-|---|---|---|:---:|---|
-| **Super Admin** | Super Administrator SDM | `superadmin@polda.polri.go.id` | `password` | Akses penuh seluruh sistem & konfigurasi database |
-| **Admin / Operator** | Operator Bagbinkar SDM | `adminsdm@polda.polri.go.id` | `password` | Input data personel, kelola syarat, jalankan simulasi sidang |
-| **Pimpinan** | Kapolda / Tim Wanjak | `kapolda@polda.polri.go.id` | `password` | Tinjau hasil peringkat, periksa transparansi nilai & alasan TMS |
+| Peran (Role) | Nama Pengguna | Alamat Email | Kata Sandi Bawaan | Status Akses Saat Ini |
+|---|---|---|:---:|:---:|
+| **Super Admin** | Super Administrator SDM | `superadmin@polda.polri.go.id` | `password` | <span style="color:#10b981;font-weight:bold;">AKTIF (Akses Penuh)</span> |
+| **Admin / Operator** | Operator Bagbinkar SDM | `adminsdm@polda.polri.go.id` | `password` | *Dibatasi (Tahap Integrasi)* |
+| **Pimpinan** | Kapolda / Tim Wanjak | `kapolda@polda.polri.go.id` | `password` | *Dibatasi (Tahap Integrasi)* |
+
+> 🔑 **Cara Masuk ke Sistem:**
+> 1. Buka alamat `http://127.0.0.1:8000/login`.
+> 2. Masukkan email: `superadmin@polda.polri.go.id` dan kata sandi: `password`.
+>    *(Anda juga dapat langsung mengklik tombol **"Klik untuk Isi Otomatis"** pada kartu bantuan di halaman login).*
+> 3. Klik tombol **"Masuk ke Dashboard Presisi"**.
+> 4. Untuk keluar dari sesi, klik tombol icon pintu/logout di pojok kanan atas navbar atau di bagian bawah sidebar.
 
 ---
 
