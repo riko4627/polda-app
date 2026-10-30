@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Directs all requests to the /public directory
-    RewriteRule ^$ public/ [L]
-    RewriteRule (.*) public/$1 [L]
+    # Mencegah pengalihan berulang jika request sudah mengarah ke /public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
