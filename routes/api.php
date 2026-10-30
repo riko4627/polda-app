@@ -4,6 +4,7 @@ use App\Http\Controllers\AssessmentScoreController;
 use App\Http\Controllers\CriterionController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\RecommendationController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function (): void {
@@ -24,4 +25,9 @@ Route::prefix('v1')->group(function (): void {
 
     // Assessment Scores
     Route::post('assessment-scores', [AssessmentScoreController::class, 'store'])->name('assessment-scores.store');
+
+    // SPK TOPSIS Recommendations Engine
+    Route::post('recommendations/run', [RecommendationController::class, 'run'])->name('recommendations.run');
+    Route::get('recommendations/history', [RecommendationController::class, 'history'])->name('recommendations.history');
+    Route::get('recommendations/{run}', [RecommendationController::class, 'show'])->name('recommendations.show');
 });

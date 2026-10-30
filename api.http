@@ -72,3 +72,23 @@ Accept: application/json
     "period_year": 2026,
     "notes": "Penilaian berkala semester 1"
 }
+
+### 9. Jalankan Rekomendasi SPK-TOPSIS untuk Suatu Jabatan (Fase 2 Engine)
+POST {{baseUrl}}/recommendations/run
+Content-Type: application/json
+Accept: application/json
+
+{
+    "position_id": "{{positionId}}",
+    "period_year": 2026,
+    "notes": "Sidang Wanjak Semester 1 Periode 2026"
+}
+
+### 10. Ambil Riwayat Eksekusi Rekomendasi
+GET {{baseUrl}}/recommendations/history?limit=10
+Accept: application/json
+
+### 11. Ambil Detail Rekomendasi & Audit Transparansi Matriks (3 Tab PRD)
+# Ganti :runId dengan id dari hasil request no. 9 atau 10
+GET {{baseUrl}}/recommendations/{{positionId}}
+Accept: application/json
