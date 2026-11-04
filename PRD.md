@@ -37,9 +37,9 @@ Terdapat 7 profil jabatan spesifik dengan aturan dasar kelayakan (*eligibility r
 | 1 | **Kapolsek** | Min. **Iptu** (Iptu, AKP, Kompol) | - | - | - |
 | 2 | **Kabagdalpers** | Wajib **AKBP** | Wajib **Sespimmen** | - | Wajib pernah menjabat **Kapolres** |
 | 3 | **Kapolres** | Wajib **AKBP** | Wajib **Sespimmen** | - | - |
-| 4 | **Wadir** (Fungsi Opsnal) | Wajib **AKBP** | Wajib **Sespimmen** | - | Wajib memiliki rekam jejak tugas pada fungsi terkait (misal Reskrim) |
+| 4 | **Wadir** (Fungsi Opsnal) | Wajib **AKBP** | Wajib **Sespimmen** | Wajib sertifikasi/dikjur **Reskrim** | Wajib memiliki rekam jejak tugas pada fungsi terkait (misal Reskrim) |
 | 5 | **Bintara Penyidik** | Golongan **Bintara** (Bripda s.d. Aiptu) | - | Wajib memiliki sertifikasi/ijazah **Dikjur Penyidik** | - |
-| 6 | **Kanit Reskrim** | Min. **Iptu** | Min. **S1** (Umum/Hukum) | Wajib sertifikasi/sertifikat **Penyidik** | - |
+| 6 | **Kanit Reskrim Polres** | Min. **Iptu** | Min. **S1** (Umum/Hukum) | Wajib sertifikasi/dikjur **Reskrim** | - |
 | 7 | **Bintara Bhabinkamtibmas** | Golongan **Bintara** | - | Wajib sertifikasi **Bhabinkamtibmas** & Dikjur terkait | - |
 
 > *Catatan:* Sistem menyediakan antarmuka bagi Admin untuk menambah jabatan baru atau memperbarui aturan syarat mutlak tanpa mengubah kode program.
