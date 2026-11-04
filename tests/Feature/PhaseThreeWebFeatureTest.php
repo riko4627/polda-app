@@ -6,6 +6,7 @@ use App\Models\Criterion;
 use App\Models\Personnel;
 use App\Models\Position;
 use App\Models\Rank;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -17,6 +18,11 @@ class PhaseThreeWebFeatureTest extends TestCase
     {
         parent::setUp();
         $this->seed();
+
+        $admin = User::query()->where('role', 'super_admin')->first();
+        if ($admin) {
+            $this->actingAs($admin);
+        }
     }
 
     public function test_can_browse_personnel_list(): void

@@ -98,10 +98,10 @@ class PositionSeeder extends Seeder
                     'required_rank_category' => null,
                     'min_education_level' => null,
                     'requires_sespimmen' => true,
-                    'required_certification_keyword' => null,
+                    'required_certification_keyword' => 'Reskrim',
                     'required_past_position_title' => null,
                     'required_function_track' => 'Reskrim',
-                    'notes' => 'Wajib AKBP, Sespimmen, dan memiliki rekam jejak tugas di fungsi Reskrim.',
+                    'notes' => 'Wajib AKBP, Sespimmen, memiliki sertifikasi/dikjur Reskrim, dan memiliki rekam jejak tugas di fungsi Reskrim.',
                 ],
             ],
             [
@@ -128,10 +128,10 @@ class PositionSeeder extends Seeder
             [
                 'position' => [
                     'code' => 'KANIT_RESKRIM',
-                    'title' => 'Kanit Reskrim Polsek',
-                    'unit_name' => 'Unit Reskrim Polsek',
+                    'title' => 'Kanit Reskrim Polres',
+                    'unit_name' => 'Satreskrim Polres',
                     'quota' => 3,
-                    'description' => 'Kepala unit operasional penyidikan dan penindakan kriminal di Polsek.',
+                    'description' => 'Kepala unit operasional penyidikan dan penindakan kriminal di Satreskrim Polres.',
                     'is_active' => true,
                 ],
                 'rule' => [
@@ -140,10 +140,10 @@ class PositionSeeder extends Seeder
                     'required_rank_category' => null,
                     'min_education_level' => 'S1',
                     'requires_sespimmen' => false,
-                    'required_certification_keyword' => 'Penyidik',
+                    'required_certification_keyword' => 'Reskrim',
                     'required_past_position_title' => null,
                     'required_function_track' => null,
-                    'notes' => 'Min. Iptu, Min. S1, dan memiliki sertifikasi/dikjur Penyidik.',
+                    'notes' => 'Min. Iptu, Min. S1, dan memiliki sertifikasi/dikjur Reskrim.',
                 ],
             ],
             [

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Position;
 use App\Models\TopsisRun;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -15,6 +16,11 @@ class PhaseFourWebFeatureTest extends TestCase
     {
         parent::setUp();
         $this->seed();
+
+        $admin = User::query()->where('role', 'super_admin')->first();
+        if ($admin) {
+            $this->actingAs($admin);
+        }
     }
 
     public function test_can_browse_recommendations_launch_page(): void

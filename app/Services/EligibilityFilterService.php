@@ -97,10 +97,35 @@ class EligibilityFilterService
 
         // 6. Validasi Sertifikasi / Dikjur Khusus
         if ($rule->required_certification_keyword) {
-            $keyword = strtolower(trim($rule->required_certification_keyword));
-            $hasCertification = $personnel->certifications->contains(function ($cert) use ($keyword) {
-                return str_contains(strtolower($cert->certification_name), $keyword)
-                    || str_contains(strtolower($cert->institution ?? ''), $keyword);
+            $rawKeywords = preg_split('/[,\|\/]+/', strtolower(trim($rule->required_certification_keyword)));
+            $keywords = array_values(array_filter(array_map('trim', $rawKeywords)));
+
+            // Perluasan kata kunci dan sinonim kepolisian (misal: 'reskrim' dan 'reserse' saling berkorespondensi)
+            $expandedKeywords = [];
+            foreach ($keywords as $kw) {
+                $expandedKeywords[] = $kw;
+                if ($kw === 'reskrim' || str_contains($kw, 'reskrim')) {
+                    $expandedKeywords[] = 'reskrim';
+                    $expandedKeywords[] = 'reserse';
+                } elseif ($kw === 'reserse' || str_contains($kw, 'reserse')) {
+                    $expandedKeywords[] = 'reserse';
+                    $expandedKeywords[] = 'reskrim';
+                }
+            }
+            $expandedKeywords = array_values(array_unique($expandedKeywords));
+
+            $hasCertification = $personnel->certifications->contains(function ($cert) use ($expandedKeywords) {
+                $certName = strtolower($cert->certification_name ?? '');
+                $institution = strtolower($cert->institution ?? '');
+                $combined = $certName . ' ' . $institution;
+
+                foreach ($expandedKeywords as $keyword) {
+                    if (str_contains($combined, $keyword)) {
+                        return true;
+                    }
+                }
+
+                return false;
             });
 
             if (! $hasCertification) {
