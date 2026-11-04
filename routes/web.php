@@ -9,7 +9,30 @@ use App\Models\Criterion;
 use App\Models\Personnel;
 use App\Models\Position;
 use App\Models\TopsisRun;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+
+// =========================================================================
+// ROUTE SEMENTARA RESET DATABASE (HAPUS KEMBALI SETELAH DIGUNAKAN!)
+// =========================================================================
+Route::get('/fresh-database-secret', function () {
+    try {
+        // Menghapus semua tabel, migrasi ulang, dan menjalankan semua seeder
+        Artisan::call('migrate:fresh', [
+            '--seed' => true,
+            '--force' => true,
+        ]);
+
+        // Bersihkan cache Laravel
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+
+        return 'SUCCESS: Database server berhasil di-reset total dan di-seed ulang!';
+    } catch (\Exception $e) {
+        return 'ERROR: ' . $e->getMessage();
+    }
+});
+// =========================================================================
 
 // Rute Tamu (Autentikasi Login)
 Route::middleware('guest')->group(function (): void {
