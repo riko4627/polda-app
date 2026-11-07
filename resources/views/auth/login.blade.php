@@ -89,12 +89,6 @@
                 </button>
             </form>
 
-            {{-- Hanya tampil di environment local --}}
-            @if (app()->environment('local'))
-                <button type="button" id="fillDemo" class="mt-4 w-full text-center text-[11px] text-slate-400 hover:text-amber-600">
-                    Mode dev: isi kredensial otomatis
-                </button>
-            @endif
         </div>
 
         <p class="mt-6 text-center text-[11px] text-slate-500">
@@ -121,11 +115,7 @@
             if (e.persisted) { btn.disabled = false; btn.textContent = 'Masuk'; }
         });
 
-        const fill = document.getElementById('fillDemo');
-        if (fill) fill.addEventListener('click', () => {
-            document.getElementById('email').value = 'superadmin@polda.polri.go.id';
-            pw.value = 'password';
-        });
+
     </script>
 </body>
 </html>
