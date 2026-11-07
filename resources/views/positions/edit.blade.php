@@ -167,13 +167,14 @@
                     <!-- Sertifikasi Wajib -->
                     <div>
                         <label class="block text-xs font-semibold text-slate-700">Kata Kunci Sertifikasi / Dikjur Wajib</label>
-                        <input 
-                            type="text" 
+                        <select 
                             name="required_certification_keyword" 
-                            value="{{ old('required_certification_keyword', $position->rule?->required_certification_keyword) }}" 
-                            placeholder="Contoh: Penyidik atau Bhabinkamtibmas" 
-                            class="mt-1 w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
+                            class="mt-1 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
                         >
+                            <option value="">-- Tidak Dipersyaratkan --</option>
+                            <option value="Reskrim" {{ old('required_certification_keyword', $position->rule?->required_certification_keyword) == 'Reskrim' ? 'selected' : '' }}>Reskrim</option>
+                            <option value="Bhabinkamtibmas" {{ old('required_certification_keyword', $position->rule?->required_certification_keyword) == 'Bhabinkamtibmas' ? 'selected' : '' }}>Bhabinkamtibmas</option>
+                        </select>
                         <span class="text-[11px] text-slate-500">Sistem akan memeriksa portofolio sertifikat personel dengan kata kunci ini.</span>
                     </div>
 

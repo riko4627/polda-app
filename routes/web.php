@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\CriterionWebController;
 use App\Http\Controllers\Web\PersonnelWebController;
 use App\Http\Controllers\Web\PositionWebController;
 use App\Http\Controllers\Web\RecommendationWebController;
+use App\Http\Controllers\Web\UserWebController;
 use App\Models\Criterion;
 use App\Models\Personnel;
 use App\Models\Position;
@@ -84,5 +85,15 @@ Route::middleware(['auth', 'super_admin'])->group(function (): void {
         Route::post('/run', [RecommendationWebController::class, 'run'])->name('run');
         Route::get('/history', [RecommendationWebController::class, 'history'])->name('history');
         Route::get('/{id}', [RecommendationWebController::class, 'show'])->name('show');
+    });
+
+    // Modul 5: Manajemen Akun User
+    Route::prefix('users')->name('web.users.')->group(function (): void {
+        Route::get('/', [UserWebController::class, 'index'])->name('index');
+        Route::get('/create', [UserWebController::class, 'create'])->name('create');
+        Route::post('/', [UserWebController::class, 'store'])->name('store');
+        Route::get('/{user}/edit', [UserWebController::class, 'edit'])->name('edit');
+        Route::put('/{user}', [UserWebController::class, 'update'])->name('update');
+        Route::delete('/{user}', [UserWebController::class, 'destroy'])->name('destroy');
     });
 });

@@ -108,6 +108,18 @@
                     </svg>
                     <span>Kriteria & Bobot</span>
                 </a>
+
+                <!-- Manajemen User -->
+                <a 
+                    href="{{ url('/users') }}" 
+                    class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition {{ request()->is('users*') ? 'bg-amber-500 text-slate-950 font-semibold' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
+                >
+                    <svg class="h-5 w-5 {{ request()->is('users*') ? 'text-slate-950' : 'text-slate-400 group-hover:text-amber-400' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Manajemen User</span>
+                </a>
+
             </div>
         </div>
 
